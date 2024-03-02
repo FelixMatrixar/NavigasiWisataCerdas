@@ -1,0 +1,27 @@
+$colors: (
+  "white": #ffffff,
+  "white-2": #FCFCFD,
+  "black": #09080D,
+  "green": #58C27D,
+  "blue": #3B71FE,
+  "red": #EB5757,
+  "red-2": #EB3F5E,
+  "transparent": transparent,
+  "gray-1": #333333,
+  "gray-2": #7D7C84,
+  "gray-3": #A2A1A7,
+);
+
+// Default Font Size
+$base-font-size: 16px;
+
+// Responsive Breakpoint
+$br-xxs: 375px;
+$br-xx: 425px;
+$br-xs: 480px;
+$br-mm: 512px;
+$br-sm: 576px;
+$br-md: 768px;
+$br-lg: 992px;
+$br-xl: 1140px;
+$br-xxl: 1200px;
