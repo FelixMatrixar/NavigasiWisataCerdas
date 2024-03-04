@@ -799,17 +799,17 @@ const Index = (props) => {
             </div>
 
             <div className="row justify-content-center">
-              <div className="col-lg-10">
+              <div className="col-lg-10 mx-auto">
                 <div className="row">
                   <div className="col-md-4 mb-4 mb-md-0 text-center">
                     <div className="px-3">
                       <img src="./../images/map.png" className="mb-4" alt="" />
                       <h5 className="medium font__size--24 text__24-1024">
-                        Best guide
+                        Best recommender system
                       </h5>
                       <p className="normal font__size--16 text__16-1024 color__gray-2">
-                        Our expert tour guide knows the best about traveling
-                        they will guide you alltime
+                        Utilized Hybrid Filtering LightFM to give personalized
+                        recommendations
                       </p>
                     </div>
                   </div>
@@ -829,104 +829,6 @@ const Index = (props) => {
                       </p>
                     </div>
                   </div>
-                  <div className="col-md-4 mb-4 mb-md-0 text-center">
-                    <div className="px-3">
-                      <img
-                        src="./../images/buildings.png"
-                        className="mb-4"
-                        alt=""
-                      />
-                      <h5 className="medium font__size--24 text__24-1024">
-                        Luxury hotels
-                      </h5>
-                      <p className="normal font__size--16 text__16-1024 color__gray-2">
-                        We realize ideas from simple to complex, everything
-                        becomes easy to use.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <div className="container">
-            <div className="text-center mb-5">
-              <h2 className="semi-bold font__size--48 text__48-1024 text__48-md text__48-sm">
-                Looking to get away? Here are the top 5{" "}
-                <br className="d-none d-md-block" /> places you should visit!
-              </h2>
-            </div>
-            <div
-              className={
-                "wrapper__play-video position-relative " +
-                (play ? "active" : "")
-              }
-            >
-              <img src="./../images/ffggfd.png" className="cover" alt="" />
-              <div className="play pointer" onClick={() => tootlePlay()}>
-                <img src="./../images/play-circle.png" alt="" />
-              </div>
-              <video ref={video} className="video" loop controls={false}>
-                <source
-                  src="https://assets.mixkit.co/videos/preview/mixkit-white-sand-beach-background-1564-large.mp4"
-                  type="video/mp4"
-                />
-                Your browser does not support the video tag.
-              </video>
-              <div className="wrap">
-                <div className="d-md-flex text-center text-md-left align-items-center justify-content-between">
-                  <h4 className="medium font__size--48 text__48-1024 text__48-md text__48-sm mb-3 mb-md-0">
-                    Save up to <span className="semi-bold">40% off</span> your!
-                  </h4>
-                  <a
-                    href="#!"
-                    className="btn btn__blue rounded__50 shadow color__white semi-bold font__size--16 text__16-1024"
-                  >
-                    Book now
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <div className="container">
-            <div className="row">
-              <div className="col-md-6 my-auto">
-                <img src="./../images/ththt.png" alt="" />
-              </div>
-              <div className="col-md-6 my-auto">
-                <h5 className="medium font__size--18 text__18-1024 color__green line__left mb-3">
-                  Newslatter
-                </h5>
-                <h1 className="semi-bdol font__size--48 text__48-1024 text__48-md text__48-sm mb-4">
-                  We send you the <br />
-                  latest travel deals <br />
-                  every day.
-                </h1>
-                <div className="d-flex align-items-center flex-wrap flex-lg-nowrap">
-                  <div className="wrapper__subscribe-form d-flex align-items-center w__md-100 mb-3 mb-lg-0">
-                    <img
-                      src="./../images/sms (1).png"
-                      className="mr-2"
-                      alt=""
-                    />
-                    <input
-                      type="text"
-                      placeholder="Input email adress"
-                      className="normal font__size--16 text__16-1024 w__md-100"
-                    />
-                  </div>
-                  <a
-                    href="#!"
-                    className="medium font__size--16 text__16-1024 btn btn__blue shadow color__white ml-lg-3 rounded__50"
-                  >
-                    Get In Touch
-                  </a>
                 </div>
               </div>
             </div>
