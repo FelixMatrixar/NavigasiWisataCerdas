@@ -49,21 +49,6 @@ const Footer = (props) => {
                   FAQ
                 </a>
               </div>
-              <h5 className="medium font__size--16 text__16-1024 mb-3">
-                Join our community 🔥
-              </h5>
-              <div className="d-inline-block">
-                <div className="wrapper__field-subscibe">
-                  <input
-                    type="text"
-                    placeholder="Enter your email"
-                    className="normal font__size--14 text__14-1024 color__gray-2"
-                  />
-                  <div className="send ml-2">
-                    <img src="./../images/Line.png" alt="" />
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
