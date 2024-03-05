@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@firebase/auth": "^1.6.1",
     "@testing-library/jest-dom": "^6.2.0",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.2",
@@ -21,6 +22,7 @@
     "react-datepicker": "^4.25.0",
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",
+    "react-google-button": "^0.7.2",
     "react-jquery-plugin": "^1.1.7",
     "react-loadable": "^5.5.0",
     "react-payment-inputs": "^1.1.9",

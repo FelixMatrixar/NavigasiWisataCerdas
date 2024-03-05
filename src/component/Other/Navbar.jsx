@@ -3,14 +3,17 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-import Login from './../Modal/Auth/Login'
-import Register from './../Modal/Auth/Register';
-import Confirm from './../Modal/Auth/Confirm';
-import Code from "./../Modal/Auth/Code"
+import { UserAuth } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
+
+import Login from "./../Modal/Auth/Login";
+import Register from "./../Modal/Auth/Register";
+import Confirm from "./../Modal/Auth/Confirm";
+import Code from "./../Modal/Auth/Code";
 
 const Navbar = (props) => {
-
   const [modalLogin, setModalLogin] = useState(false);
+
   const onCLickModalLogin = () => {
     console.log(!modalLogin);
     if (!modalLogin) {
@@ -31,7 +34,6 @@ const Navbar = (props) => {
     }
     setModalRegister(!modalRegister);
   };
-
 
   const [modalConfirm, setModalConfirm] = useState(false);
   const onCLickModalConfirm = () => {
@@ -90,20 +92,28 @@ const Navbar = (props) => {
     }
   };
 
+  const [toogleMenu, setToogleMenu] = useState(false);
+  const [toogleLanguage, setToogleLanguage] = useState("English");
 
-
-  const [toogleMenu, setToogleMenu] = useState(false)
-  const [toogleLanguage, setToogleLanguage] = useState("English")
-
-  const status = localStorage.getItem("status") == "login" ? true : false
+  const status = localStorage.getItem("status") == "login" ? true : false;
 
   const onLogout = () => {
     localStorage.removeItem("status");
-  }
+  };
+
+  // Firebase Google Auth
+  const { user, logOut } = UserAuth();
+
+  const handleSignOut = async () => {
+    try {
+      await logOut();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Fragment>
-
       <Login
         modalLogin={modalLogin}
         onCLickModalLogin={() => onCLickModalLogin()}
@@ -125,8 +135,12 @@ const Navbar = (props) => {
         onCLickSwitchModal={(e) => onCLickSwitchModal(e)}
       />
 
-
-      <div className={"wrapper__side-nav-mobile d-flex d-lg-none " + (toogleMenu ? "active" : "")}>
+      <div
+        className={
+          "wrapper__side-nav-mobile d-flex d-lg-none " +
+          (toogleMenu ? "active" : "")
+        }
+      >
         <div className="d-flex flex-wrap w-100">
           <div className="w-100">
             <div className="d-flex align-items-center justify-content-between mb-4">
@@ -138,26 +152,53 @@ const Navbar = (props) => {
                 <div className="d-flex align-items-center font__size--18 text__18-1024 semi-bold color__white">
                   <img src="./../images/sdsadsa.png" alt="" />
 
-                  <span className="ml-2">Trav.id</span>
+                  <span className="ml-2">Navigasi Wisata Cerdas</span>
                 </div>
               </NavLink>
-              <img src="./../images/close (1).png" onClick={() => setToogleMenu(!toogleMenu)} className="pointer" alt="" />
+              <img
+                src="./../images/close (1).png"
+                onClick={() => setToogleMenu(!toogleMenu)}
+                className="pointer"
+                alt=""
+              />
             </div>
             <div className="menu">
-              <NavLink to="/" className="semi-bold font__size--16 text__16-1024 text__16-1024 color__white">Discover</NavLink>
-              <hr />
-              <NavLink to="/destination" className="semi-bold font__size--16 text__16-1024 text__16-1024 color__white">Destinations</NavLink>
+              <NavLink
+                to="/"
+                className="semi-bold font__size--16 text__16-1024 text__16-1024 color__white"
+              >
+                Discover
+              </NavLink>
               <hr />
               <NavLink
-                to="/contact" className="semi-bold font__size--16 text__16-1024 text__16-1024 color__white">Contact</NavLink>
+                to="/destination"
+                className="semi-bold font__size--16 text__16-1024 text__16-1024 color__white"
+              >
+                Destinations
+              </NavLink>
               <hr />
-              <NavLink to="/faq" className="semi-bold font__size--16 text__16-1024 text__16-1024 color__white">FAQ</NavLink>
+              <NavLink
+                to="/contact"
+                className="semi-bold font__size--16 text__16-1024 text__16-1024 color__white"
+              >
+                Contact
+              </NavLink>
+              <hr />
+              <NavLink
+                to="/faq"
+                className="semi-bold font__size--16 text__16-1024 text__16-1024 color__white"
+              >
+                FAQ
+              </NavLink>
               <hr />
             </div>
           </div>
         </div>
-      </div >
-      <div className="bg__wrap-menu d-lg-none" onClick={() => setToogleMenu(!toogleMenu)}></div>
+      </div>
+      <div
+        className="bg__wrap-menu d-lg-none"
+        onClick={() => setToogleMenu(!toogleMenu)}
+      ></div>
       <nav
         className="navbar navbar-expand-lg wrapper__navbar position-relative z-2"
         data-aos="fade-down"
@@ -182,7 +223,7 @@ const Navbar = (props) => {
               <div className="d-flex align-items-center">
                 <img src="./../images/radar.png" alt="" />
 
-                <span className="ml-2">Trav.id</span>
+                <span className="ml-2">Navigasi Wisata Cerdas</span>
               </div>
             </NavLink>
           </div>
@@ -228,38 +269,85 @@ const Navbar = (props) => {
             </ul>
           </div>
 
-
           <div className="wrapper__side-menu d-flex align-items-center">
             <div class="dropdown show">
-              <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a
+                class=""
+                href="#"
+                role="button"
+                id="dropdownMenuLink"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
                 <div className="d-flex align-items-center">
                   <img src="./../images/global.png" alt="" />
-                  <span className="medium font__size--16 text__16-1024 ml-2 color__gray-1 d-none d-sm-block">{toogleLanguage}</span>
+                  <span className="medium font__size--16 text__16-1024 ml-2 color__gray-1 d-none d-sm-block">
+                    {toogleLanguage}
+                  </span>
                 </div>
               </a>
 
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" onClick={() => setToogleLanguage("English")} href="#!">English</a>
-                <a class="dropdown-item" onClick={() => setToogleLanguage("Indonesia")} href="#!">Indonesia</a>
-                <a class="dropdown-item" onClick={() => setToogleLanguage("Japan")} href="#!">Japan</a>
+                <a
+                  class="dropdown-item"
+                  onClick={() => setToogleLanguage("English")}
+                  href="#!"
+                >
+                  English
+                </a>
+                <a
+                  class="dropdown-item"
+                  onClick={() => setToogleLanguage("Indonesia")}
+                  href="#!"
+                >
+                  Indonesia
+                </a>
+                <a
+                  class="dropdown-item"
+                  onClick={() => setToogleLanguage("Japan")}
+                  href="#!"
+                >
+                  Japan
+                </a>
               </div>
             </div>
-            <a href="#!" className="notification position-relative mx-3 mx-sm-4">
+            <a
+              href="#!"
+              className="notification position-relative mx-3 mx-sm-4"
+            >
               <div className="circle normal font__size--14 color__white">5</div>
               <img src="./../images/sadfg (2).png" alt="" />
             </a>
 
-
             <div class="dropdown wrapper__dropdown">
-              <div className="pointer" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img src="./../images/sadfg (3).png" className="images__avatar" alt="" />
+              <div
+                className="pointer"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <div className="flex justify-between bg-gray-200 w-full p-4">
+                  {user?.displayName ? (
+                    <button onClick={handleSignOut}>Logout</button>
+                  ) : (
+                    <Link to="/signin">Sign in</Link>
+                  )}
+                </div>
               </div>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+              <div
+                class="dropdown-menu dropdown-menu-right"
+                aria-labelledby="dropdownMenuButton"
+              >
                 <NavLink to="/booking" class="dropdown-item" href="#">
                   <div className="d-flex align-items-center justify-content-between">
                     <div className="d-flex align-items-center">
                       <img src="./../images/sadfg (1).png" alt="" />
-                      <span className="medium font__size--16 text__16-1024 ml-2">Booking</span>
+                      <span className="medium font__size--16 text__16-1024 ml-2">
+                        Booking
+                      </span>
                     </div>
                     <div className="wrapper__count normal font__size--14">
                       2
@@ -270,7 +358,9 @@ const Navbar = (props) => {
                   <div className="d-flex align-items-center justify-content-between">
                     <div className="d-flex align-items-center">
                       <img src="./../images/sadfg (5).png" alt="" />
-                      <span className="medium font__size--16 text__16-1024 ml-2">Wishlist</span>
+                      <span className="medium font__size--16 text__16-1024 ml-2">
+                        Wishlist
+                      </span>
                     </div>
                     <div className="wrapper__count normal font__size--14">
                       4
@@ -281,7 +371,9 @@ const Navbar = (props) => {
                   <div className="d-flex align-items-center justify-content-between">
                     <div className="d-flex align-items-center">
                       <img src="./../images/sadfg (4).png" alt="" />
-                      <span className="medium font__size--16 text__16-1024 ml-2">Message</span>
+                      <span className="medium font__size--16 text__16-1024 ml-2">
+                        Message
+                      </span>
                     </div>
                     <div className="wrapper__count normal font__size--14">
                       6
@@ -294,50 +386,84 @@ const Navbar = (props) => {
                 <a class="dropdown-item" href="#">
                   <div className="d-flex align-items-center">
                     <img src="./../images/Notification - Bell (3).png" alt="" />
-                    <span className="medium font__size--16 text__16-1024 ml-2">Host your home</span>
+                    <span className="medium font__size--16 text__16-1024 ml-2">
+                      Host your home
+                    </span>
                   </div>
                 </a>
                 <a class="dropdown-item" href="#">
                   <div className="d-flex align-items-center">
                     <img src="./../images/Notification - Bell (4).png" alt="" />
-                    <span className="medium font__size--16 text__16-1024 ml-2">Host an experience</span>
+                    <span className="medium font__size--16 text__16-1024 ml-2">
+                      Host an experience
+                    </span>
                   </div>
                 </a>
                 <a class="dropdown-item" href="#">
                   <div className="d-flex align-items-center">
                     <img src="./../images/Notification - Bell (5).png" alt="" />
-                    <span className="medium font__size--16 text__16-1024 ml-2">Help</span>
+                    <span className="medium font__size--16 text__16-1024 ml-2">
+                      Help
+                    </span>
                   </div>
                 </a>
 
-                {
-                  status ? <NavLink to="/profile/personal" className="profile-user color__black mt-4">
+                {status ? (
+                  <NavLink
+                    to="/profile/personal"
+                    className="profile-user color__black mt-4"
+                  >
                     <div className="d-flex align-items-center mb-4">
-                      <img src="./../images/sadfg (3).png" className="images__avatar" alt="" />
+                      <img
+                        src="./../images/sadfg (3).png"
+                        className="images__avatar"
+                        alt=""
+                      />
                       <div className="ml-2">
-                        <h5 className="medium font__size--16 text__16-1024 mb-0">Asep Asomething</h5>
-                        <p className="mb-0 normal font__size--14 color__gray-2">asepasomething@gmail.com</p>
+                        <h5 className="medium font__size--16 text__16-1024 mb-0">
+                          Asep Asomething
+                        </h5>
+                        <p className="mb-0 normal font__size--14 color__gray-2">
+                          asepasomething@gmail.com
+                        </p>
                       </div>
                     </div>
-                    <a href="#!" className="btn btn__outlined--blue shadow medium font__size--16 text__16-1024 color__blue no__opacity w-100 rounded__50" onClick={() => onLogout()}>Log Out</a>
-                  </NavLink> : <div className="wrapper__auth-btn w-100 d-flex align-items-center">
+                    <a
+                      href="#!"
+                      className="btn btn__outlined--blue shadow medium font__size--16 text__16-1024 color__blue no__opacity w-100 rounded__50"
+                      onClick={() => onLogout()}
+                    >
+                      Log Out
+                    </a>
+                  </NavLink>
+                ) : (
+                  <div className="wrapper__auth-btn w-100 d-flex align-items-center">
                     <div className="items">
-                      <a href="#!" className="btn btn__blue shadow medium font__size--14 color__white w-100 rounded__50" onClick={() => onCLickModalLogin()}>Log In</a>
+                      <a
+                        href="#!"
+                        className="btn btn__blue shadow medium font__size--14 color__white w-100 rounded__50"
+                        onClick={() => onCLickModalLogin()}
+                      >
+                        Log In
+                      </a>
                     </div>
                     <div className="items">
-                      <a href="#!" className="btn btn__outlined--blue shadow medium font__size--14 color__blue no__opacity w-100 rounded__50" onClick={() => onCLickModalRegister()}>Sign Up</a>
+                      <a
+                        href="#!"
+                        className="btn btn__outlined--blue shadow medium font__size--14 color__blue no__opacity w-100 rounded__50"
+                        onClick={() => onCLickModalRegister()}
+                      >
+                        Sign Up
+                      </a>
                     </div>
                   </div>
-                }
-
+                )}
               </div>
             </div>
           </div>
-
-
         </div>
       </nav>
-    </Fragment >
+    </Fragment>
   );
 };
 

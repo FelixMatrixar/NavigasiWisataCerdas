@@ -84,9 +84,7 @@ const Index = (props) => {
                   Don't just dream about it, plan it. Travel.
                 </h1>
                 <p className="normal font__size--16 text__16-1024 color__gray-2 mb-3 mb-sm-5">
-                  When you're traveling, do you want to make sure your hotel has
-                  a nice pool? Or maybe a happy hour with good deals on drinks?
-                  There
+                  Use our recommendation, you won't regret it.
                 </p>
 
                 <div className="wrapper__tab-filter-travel my-4 mb-sm-5">
@@ -509,7 +507,7 @@ const Index = (props) => {
                     aria-controls="pills-Popular"
                     aria-selected="true"
                   >
-                    Recommended
+                    Popular
                   </a>
                 </li>
                 <li class="nav-item">
@@ -596,7 +594,7 @@ const Index = (props) => {
                 className="pointer btn__filter d-flex align-items-center"
               >
                 <span className="medium font__size--14 text__14-1024 mr-2">
-                  Filters
+                  Recommend me
                 </span>
                 <img src="./../images/setting-4.png" alt="" />
               </div>

@@ -19,28 +19,33 @@ import LoginSecurity from "./homepage/Profile/LoginSecurity";
 import Payment from "./homepage/Profile/Payment";
 import Notification from "./homepage/Profile/Notification";
 import Privacy from "./homepage/Profile/Privacy";
+import Signin from "./homepage/Profile/Signin";
+import { AuthContextProvider } from "../context/AuthContext";
 
 const Index = (props) => {
   return (
     <Fragment>
       <Router>
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/destination" element={<Destination />} />
-          <Route path="/detail" element={<Detail />} />
-          <Route path="/request-to-book" element={<RequestToBook />} />
-          <Route path="/booking" element={<Booking />} />
-          <Route path="/wishlist" element={<Wishlist />} />
-          <Route path="/faq" element={<Faq />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/profile/personal" element={<Personal />} />
-          <Route path="/profile/security" element={<LoginSecurity />} />
-          <Route path="/profile/payment" element={<Payment />} />
-          <Route path="/profile/notification" element={<Notification />} />
-          <Route path="/profile/privacy" element={<Privacy />} />
-          {/* Add a default route or redirect if needed */}
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
+        <AuthContextProvider>
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/signin" element={<Signin />} />
+            <Route path="/destination" element={<Destination />} />
+            <Route path="/detail" element={<Detail />} />
+            <Route path="/request-to-book" element={<RequestToBook />} />
+            <Route path="/booking" element={<Booking />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/faq" element={<Faq />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/profile/personal" element={<Personal />} />
+            <Route path="/profile/security" element={<LoginSecurity />} />
+            <Route path="/profile/payment" element={<Payment />} />
+            <Route path="/profile/notification" element={<Notification />} />
+            <Route path="/profile/privacy" element={<Privacy />} />
+            {/* Add a default route or redirect if needed */}
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </AuthContextProvider>
       </Router>
     </Fragment>
   );
