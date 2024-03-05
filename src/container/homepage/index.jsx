@@ -413,7 +413,7 @@ const Index = (props) => {
                 visual journey
               </h2>
               <p className="normal font__size--16 text__16-1024 color__gray-2">
-                Find and book a great experience.
+                Get best recommendation.
               </p>
             </div>
             <div className="row justify-content-center">
