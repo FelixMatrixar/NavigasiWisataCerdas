@@ -4,6 +4,7 @@ import CardTrip from "../../component/Card/CardTrip";
 import Filter from "../../component/Modal/FIlter";
 import Footer from "../../component/Other/Footer";
 import Navbar from "../../component/Other/Navbar";
+import DataInputModal from "../../component/Other/DataInputModal";
 
 const Index = (props) => {
   const video = useRef(null);
@@ -63,6 +64,34 @@ const Index = (props) => {
       document.body.classList.remove("modal-open");
     }
     setModalFilter(!modalFilter);
+  };
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [destination, setDestination] = useState("");
+  const [rating, setRating] = useState(0);
+
+  const handleClickOpenModal = () => {
+    setModalOpen(true);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "destination") {
+      setDestination(value);
+    } else if (name === "rating") {
+      setRating(Number(value));
+    }
+  };
+
+  const handleSubmit = () => {
+    // Log the input values to the console
+    console.log("Destination:", destination);
+    console.log("Rating:", rating);
+
+    // Add any further logic you need (e.g., sending data to server)
+
+    // Close the modal
+    setModalOpen(false);
   };
 
   return (
@@ -157,17 +186,17 @@ const Index = (props) => {
                         <div className="line"></div>
                         <div className="d-flex align-items-start items">
                           <img
-                            src="./../images/calendar-add.png"
+                            src="./../images/close-circle.png"
                             className="icon"
                             alt=""
                           />
                           <div className="ml-2">
                             <h5 className="medium font__size--16 text__16-1024">
-                              Check in
+                              Accurate
                             </h5>
                             <input
                               type="text"
-                              placeholder="Add dates"
+                              placeholder="Recommendation"
                               className="normal font__size--14 text__14-1024"
                             />
                           </div>
@@ -175,17 +204,17 @@ const Index = (props) => {
                         <div className="line sm-none"></div>
                         <div className="d-flex align-items-start items">
                           <img
-                            src="./../images/calendar-remove.png"
+                            src="./../images/award.png"
                             className="icon"
                             alt=""
                           />
                           <div className="ml-2">
                             <h5 className="medium font__size--16 text__16-1024">
-                              Check out
+                              Intelligent
                             </h5>
                             <input
                               type="text"
-                              placeholder="Add dates"
+                              placeholder="Navigation"
                               className="normal font__size--14 text__14-1024"
                             />
                           </div>
@@ -199,25 +228,26 @@ const Index = (props) => {
                           />
                           <div className="ml-2">
                             <h5 className="medium font__size--16 text__16-1024">
-                              Who
+                              Tourists
                             </h5>
                             <input
                               type="text"
-                              placeholder="Add guests"
+                              placeholder="Personalization"
                               className="normal font__size--14 text__14-1024"
                             />
                           </div>
                         </div>
                         <div className="line none"></div>
-                        <button className="btn btn__blue color__white shadow rounded__50">
-                          <div className="d-flex align-items-center">
-                            <img src="./../images/search-normal.png" alt="" />
-                            <span className="semi-bold font__size--16 text__16-1024 ml-2">
-                              Search
-                            </span>
-                          </div>
+                        <button
+                          className="btn btn__blue color__white shadow rounded__50"
+                          onClick={handleClickOpenModal}
+                        >
+                          Recommend Me!
                         </button>
                       </div>
+                      {modalOpen && (
+                        <DataInputModal onClose={() => setModalOpen(false)} />
+                      )}
                     </div>
                     <div
                       class="tab-pane fade"
@@ -270,7 +300,7 @@ const Index = (props) => {
                           />
                           <div className="ml-2">
                             <h5 className="medium font__size--16 text__16-1024">
-                              Who
+                              Tourists
                             </h5>
                             <input
                               type="text"
@@ -387,7 +417,8 @@ const Index = (props) => {
                   </div>
 
                   <span className="ml-3 normal font__size--12 text__12-1024">
-                    16 people <span className="medium">booked</span> a visit in
+                    16 people{" "}
+                    <span className="medium">used recommendation</span> feature
                     last 24 hours
                   </span>
                 </div>
@@ -507,7 +538,7 @@ const Index = (props) => {
                     aria-controls="pills-Popular"
                     aria-selected="true"
                   >
-                    Popular
+                    Recommended
                   </a>
                 </li>
                 <li class="nav-item">
@@ -589,15 +620,6 @@ const Index = (props) => {
                   </a>
                 </li>
               </ul>
-              <div
-                onClick={() => onCLickModalFilter()}
-                className="pointer btn__filter d-flex align-items-center"
-              >
-                <span className="medium font__size--14 text__14-1024 mr-2">
-                  Recommend me
-                </span>
-                <img src="./../images/setting-4.png" alt="" />
-              </div>
             </div>
             <div class="tab-content mb-4" id="pills-tabContent">
               <div
